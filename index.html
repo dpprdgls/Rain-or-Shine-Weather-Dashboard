@@ -4,14 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- borrow 21 -->
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/style.css" />
 
 
     <title>Rain or Shine Weather Dashboard</title>
 </head>
-<body>
-    <p>hi im not done yet</p>
+
+<body class="flex-column min-100-vh">
+    <header class="hero">
+        <h1 class="app-title">
+          <i class="fab"></i> Rain or Shine Weather
+        </h1>
+        <p>Search for a city to see what the weather is!
+        </p>
+      </header>
+
+    <!-- <h1 id="P1">5 Day Weather Forecast</h1>
+    <p id="inputContainer">City: <input type="text" id="cityInput"></p>
+    <button type='button' onclick="getWeather()">Submit</button> -->
+
+    <h1>5-Day Weather Forecast</h1>
+    
+    <!-- Input field for city -->
+    <label for="cityInput">Enter a City:</label>
+    <input type="text" id="cityInput">
+    <button onclick="searchWeather()">Search</button>
+    
+    <!-- History of searched cities -->
+    <h2>Search History</h2>
+    <ul id="searchHistory"></ul>
+    
+    <!-- Weather forecast display -->
+    <div id="weather-forecast"></div>
 
 
     <script src="assets/script.js"></script>

@@ -1,0 +1,9 @@
+.forecast-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+}
+img {
+    max-width: 50px;
+    max-height: 50px;
+}
