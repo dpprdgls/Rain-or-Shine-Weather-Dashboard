@@ -16,19 +16,20 @@
 <body class="flex-column min-100-vh">
     <header class="hero">
         <h1 class="app-title">
-          <i class="fab"></i> Rain or Shine Weather
+           Rain or Shine Weather
         </h1>
-        <p>Search for a city to see what the weather is!
-        </p>
+    
       </header>
 
     <!-- <h1 id="P1">5 Day Weather Forecast</h1>
     <p id="inputContainer">City: <input type="text" id="cityInput"></p>
     <button type='button' onclick="getWeather()">Submit</button> -->
 
-    <h1>5-Day Weather Forecast</h1>
     
     <!-- Input field for city -->
+    <div>
+      <p>Search for a city</p>
+    
     <label for="cityInput">Enter a City:</label>
     <input type="text" id="cityInput">
     <button onclick="searchWeather()">Search</button>
@@ -36,9 +37,21 @@
     <!-- History of searched cities -->
     <h2>Search History</h2>
     <ul id="searchHistory"></ul>
-    
+  </div>    
+
+    <div class="currentDayContainer" id="currentDay"></div>
     <!-- Weather forecast display -->
-    <div id="weather-forecast"></div>
+
+    <h1>5-Day Weather Forecast</h1>
+    <div id="weather-forecast">
+        
+        <!-- <div class="remaining-days" id="day1"></div>
+        <div class="remaining-days" id="day2"></div>
+        <div class="remaining-days" id="day3"></div>
+        <div class="remaining-days" id="day4"></div>
+        <div class="remaining-days" id="day5"></div> -->
+    </div>
+
 
 
     <script src="assets/script.js"></script>

@@ -1,9 +1,48 @@
-.forecast-item {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
+
+.hero {
+  background-color: #2d3093;
+  color: white;
+  text-align: center;
 }
+
 img {
     max-width: 50px;
     max-height: 50px;
 }
+
+button {
+  background-color: #567cdc;
+  display: block;
+}
+
+#weather-forecast {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+  
+  /* Style for the first day container */
+  .currentDay {
+    flex-basis: 100%; /* Takes up full width */
+    max-width: 100%; /* Ensure it doesn't exceed the width of the page */
+    padding: 10px;
+    background-color: white; /* Example background color */
+    margin-bottom: 10px;
+    
+  }
+
+  .currentDayContainer{
+    border: 2px solid;
+    border-color: #24303d;
+  }
+  
+  /* Style for the remaining days container */
+  .forecast-item {
+    flex-basis: calc(20% - 20px); /* Adjust the width based on your design */
+    max-width: calc(20% - 20px); /* Adjust the max-width accordingly */
+    padding: 10px;
+    background-color: #24303d; /* Example background color */
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: white;
+  }
