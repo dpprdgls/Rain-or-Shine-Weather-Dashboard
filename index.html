@@ -25,7 +25,8 @@
     <p id="inputContainer">City: <input type="text" id="cityInput"></p>
     <button type='button' onclick="getWeather()">Submit</button> -->
 
-    
+    <div class="container">
+      <div class="left-column">
     <!-- Input field for city -->
     <div>
       <p>Search for a city</p>
@@ -38,12 +39,13 @@
     <h2>Search History</h2>
     <ul id="searchHistory"></ul>
   </div>    
-
-    <div class="currentDayContainer" id="currentDay"></div>
+</div>
+<div class="right-column">
+    <div class="currentDayContainer right-block" id="currentDay"></div>
     <!-- Weather forecast display -->
 
     <h1>5-Day Weather Forecast</h1>
-    <div id="weather-forecast">
+    <div id="weather-forecast right-block">
         
         <!-- <div class="remaining-days" id="day1"></div>
         <div class="remaining-days" id="day2"></div>
@@ -51,8 +53,8 @@
         <div class="remaining-days" id="day4"></div>
         <div class="remaining-days" id="day5"></div> -->
     </div>
-
-
+</div>
+  </div>
 
     <script src="assets/script.js"></script>
 </body>

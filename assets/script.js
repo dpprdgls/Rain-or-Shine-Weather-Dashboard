@@ -1,85 +1,62 @@
 // const geoKey = '11044aa845b946827ff51d5433745a93';
 const apiKey = '165dd9ca68fdfa4ffbbf94d846a1293e';
-        const searchHistory = [];
+const searchHistory = [];
+async function searchWeather() {
+    const cityInput = document.getElementById('cityInput');
+    const cityName = cityInput.value.trim();
 
-        async function searchWeather() {
-            const cityInput = document.getElementById('cityInput');
-            const cityName = cityInput.value.trim();
+    if (cityName === '') {
+        alert('Please enter a city name.');
+        return;
+    }
 
-            if (cityName === '') {
-                alert('Please enter a city name.');
-                return;
-            }
-  
-// working function for 5 day forecast 
-            try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&cnt=40&appid=${apiKey}`);
-                const data = await response.json();
-                displayWeatherForecast(data);
-                addToSearchHistory(cityName);
-                cityInput.value = '';
-            } catch (error) {
-                console.error('Error fetching weather data:', error);
-            }
-        }
+    try {
+        const { lat, lon } = await getLatLonForCity(cityName);
+        const weatherData = await fetchWeatherData(lat, lon);
 
-        function addToSearchHistory(cityName) {
-            searchHistory.push(cityName);
-            updateSearchHistory();
-        }
+        displayWeatherForecast(weatherData);
+        addToSearchHistory(cityName);
+        cityInput.value = '';
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+    }
+}
 
-        function updateSearchHistory() {
-            const searchHistoryList = document.getElementById('searchHistory');
-            searchHistoryList.innerHTML = '';
+async function getLatLonForCity(cityName) {
+    const geoData = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`);
+    const geoDataJson = await geoData.json();
 
-            for (const city of searchHistory) {
-                const listItem = document.createElement('li');
-                listItem.textContent = city;
-                searchHistoryList.appendChild(listItem);
-            }
-        }
+    if (geoDataJson && geoDataJson.length > 0) {
+        const { lat, lon } = geoDataJson[0];
+        return { lat, lon };
+    } else {
+        throw new Error('City not found');
+    }
+}
+//&units=imperial
+async function fetchWeatherData(lat, lon) {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`);
+    return await response.json();
+    console.log(response.json());
+}
 
-        // function displayWeatherForecast(data) {
-        //     const currentDayContainer = document.getElementById('currentDay');
-        //     const forecastDiv = document.getElementById('weather-forecast');
-        //     forecastDiv.innerHTML = '';
-            
-        //     let currentDate = new Date();
+function addToSearchHistory(cityName) {
+    searchHistory.push(cityName);
+    updateSearchHistory();
+}
 
-        //     const currentDayForecast = data.list[0];
-        //     const currentDayContent = `
-        //     <h2>${forecastDate.toDateString()}</h2>
-        //     <p>Temperature: ${temperature}°F</p>
-        //     <p>Wind Speed: ${windSpeed} mph</p>
-        //     <p>Humidity: ${humidity}%</p>
-        //     <img src="http://openweathermap.org/img/w/${weatherIcon}.png" alt="Weather Icon">`;
-        //     currentDayContainer.innerHTML = currentDayContent;
+function updateSearchHistory() {
+    const searchHistoryList = document.getElementById('searchHistory');
+    searchHistoryList.innerHTML = '';
 
+    for (const city of searchHistory) {
+        const listItem = document.createElement('li');
+        listItem.textContent = city;
+        searchHistoryList.appendChild(listItem);
+    }
+}
 
-
-        //     for (let i = 1; i < 6; i++) {
-        //         const forecast = data.list[i];
-        //         // console.log(forecast);
-        //         const temperature = forecast.main.temp;
-        //         const windSpeed = forecast.wind.speed;
-        //         const humidity = forecast.main.humidity;
-        //         const weatherIcon = forecast.weather[0].icon;
-
-               
-
-        //         const forecastItem = document.createElement('div');
-        //         forecastItem.classList.add('forecast-item');
-        //         forecastItem.innerHTML = `
-        //             <h2>${forecastDate.toDateString()}</h2>
-        //             <p>Temperature: ${temperature}°F</p>
-        //             <p>Wind Speed: ${windSpeed} mph</p>
-        //             <p>Humidity: ${humidity}%</p>
-        //             <img src="http://openweathermap.org/img/w/${weatherIcon}.png" alt="Weather Icon">
-        //         `;
-
-        //         forecastDiv.appendChild(forecastItem);
-        //     }
-        // }
+       
 
         function displayWeatherForecast(data) {
             const currentDayContainer = document.getElementById('currentDay');
@@ -91,30 +68,34 @@ const apiKey = '165dd9ca68fdfa4ffbbf94d846a1293e';
             const currentDate = new Date(currentDayForecast.dt * 1000);
         
             // Extract data for the first day
-            const temperature = currentDayForecast.main.temp;
+            const temperatureCurrent = currentDayForecast.main.temp;
             const windSpeed = currentDayForecast.wind.speed;
             const humidity = currentDayForecast.main.humidity;
             const weatherIcon = currentDayForecast.weather[0].icon;
         
             const currentDayContent = `
                 <h2>${currentDate.toDateString()}</h2>
-                <p>Temperature: ${temperature}°F</p>
+                <p>Temperature: ${temperatureCurrent}°F</p>
                 <p>Wind Speed: ${windSpeed} mph</p>
                 <p>Humidity: ${humidity}%</p>
                 <img src="http://openweathermap.org/img/w/${weatherIcon}.png" alt="Weather Icon">`;
             currentDayContainer.innerHTML = currentDayContent;
         
             for (let i = 1; i <= 5; i++) {
-                const forecast = data.list[i];
-                // Calculate the date for each day based on the current date
+                const forecast = data.list[i * 8 - 5];
+                if (forecast){
+                // Calculate the date for each day
+                // const forecastDate = new Date(forecast.dt * 1000);
+                const currentDate = new Date(data.list[0].dt * 1000); // Use the current date from the first forecast
                 const forecastDate = new Date(currentDate);
                 forecastDate.setDate(currentDate.getDate() + i);
-        
+                console.log(forecast);
+                
                 const temperature = forecast.main.temp;
                 const windSpeed = forecast.wind.speed;
                 const humidity = forecast.main.humidity;
                 const weatherIcon = forecast.weather[0].icon;
-        
+            
                 const forecastItem = document.createElement('div');
                 forecastItem.classList.add('forecast-item');
                 forecastItem.innerHTML = `
@@ -124,10 +105,11 @@ const apiKey = '165dd9ca68fdfa4ffbbf94d846a1293e';
                     <p>Humidity: ${humidity}%</p>
                     <img src="http://openweathermap.org/img/w/${weatherIcon}.png" alt="Weather Icon">
                 `;
-        
+            
                 forecastDiv.appendChild(forecastItem);
             }
         }
+    }
 
         // Initial display of search history
         updateSearchHistory();

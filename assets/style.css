@@ -46,3 +46,24 @@ button {
     margin-bottom: 10px;
     color: white;
   }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-column {
+    width: 30%; /* Adjust the width as needed */
+    background-color: #ccc; /* Background color for the left column */
+}
+
+.right-column {
+    width: 65%; /* Adjust the width as needed */
+    display: flex;
+    flex-direction: column;
+}
+
+.right-block {
+    margin-bottom: 10px; /* Adjust the spacing between the blocks as needed */
+    background-color: #e0e0e0; /* Background color for the right blocks */
+}

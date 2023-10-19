@@ -2,35 +2,7 @@
 
 ## Description
 
-This Work Day Scheduler contains a simple scheduler that helps you ease through your busy schedule. The scheduler helps you keep track of time by indicating the current time with grey boxes indicating the past, red boxes indicating the present, and green boxes indicating the future.
-
-## User Story
-
-```
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
-
-## Acceptance Criteria
-
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-```
-
-The following animation demonstrates the application functionality:
-
-<!-- @TODO: create ticket to review/update image) -->
-![A user clicks on slots on the color-coded calendar and edits the events.](./assets/img/06-server-side-apis-homework-demo.png)
-
+This Weather Dashboard displays a 5 day forcecast to the user for an inputed city. 
 
 
 ## Usage
@@ -39,10 +11,12 @@ The following animation demonstrates the application functionality:
 Download the project files and use an IDE to open the project folder. Preview the index.html file in browser for a demonstration of the project code. 
 
 or visit the link:
-[Rain or Shine](https://dpprdgls.github.io/Work-Day-Scheduler/)
+[Rain or Shine](https://dpprdgls.github.io/Rain-or-Shine-Weather-Dashboard/)
 
+The following animation demonstrates the application functionality:
 
-## Credits
+<!-- @TODO: create ticket to review/update image) -->
+![A user clicks on slots on the color-coded calendar and edits the events.](./assets/img/06-server-side-apis-homework-demo.png)
 
 
 
