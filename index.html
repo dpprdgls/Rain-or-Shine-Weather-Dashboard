@@ -28,16 +28,17 @@
     <div class="container">
       <div class="left-column">
     <!-- Input field for city -->
-    <div>
+    <div id="textInputColumn">
       <p>Search for a city</p>
     
-    <label for="cityInput">Enter a City:</label>
-    <input type="text" id="cityInput">
-    <button onclick="searchWeather()">Search</button>
-    
+    <!-- <label for="cityInput">Enter a City:</label> -->
+    <input  type="text" id="cityInput" placeholder="Enter a city name">
+    <button id="searchbutton" onclick="searchWeather()">Search</button>
+  </div>
     <!-- History of searched cities -->
-    <h2>Search History</h2>
+      <div>
     <ul id="searchHistory"></ul>
+  
   </div>    
 </div>
 <div class="right-column">
@@ -48,11 +49,7 @@
     <h1>5-Day Weather Forecast</h1>
     <div id="weather-forecast">
         
-        <!-- <div class="remaining-days" id="day1"></div>
-        <div class="remaining-days" id="day2"></div>
-        <div class="remaining-days" id="day3"></div>
-        <div class="remaining-days" id="day4"></div>
-        <div class="remaining-days" id="day5"></div> -->
+  
     </div>
   </div>
 </div>

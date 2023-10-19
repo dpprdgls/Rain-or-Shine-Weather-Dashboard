@@ -13,6 +13,42 @@ img {
 button {
   background-color: #567cdc;
   display: block;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+}
+
+input {
+  width: 97%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid;
+ 
+}
+
+#textInputColumn {
+  border-bottom: 2px solid #2d3093;
+  border-width: 100%;
+  padding-bottom: 10px;
+}
+
+#searchHistory li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background-color: grey;
+  border-radius: 5px;
+  justify-content: center;
+  color: white;
+  width: auto;
+
+}
+
+ ul {
+  padding-inline-start: 0px;
 }
 
 #weather-forecast {
@@ -54,7 +90,7 @@ button {
 
 .left-column {
     width: 30%; /* Adjust the width as needed */
-    background-color: #ccc; /* Background color for the left column */
+    background-color: white; /* Background color for the left column */
 }
 
 .right-column {
@@ -65,5 +101,5 @@ button {
 
 .right-block {
     margin-bottom: 10px; /* Adjust the spacing between the blocks as needed */
-    background-color: #e0e0e0; /* Background color for the right blocks */
+    background-color: white; /* Background color for the right blocks */
 }
