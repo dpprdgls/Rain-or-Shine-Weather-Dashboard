@@ -1,26 +1,37 @@
-// const geoKey = '11044aa845b946827ff51d5433745a93';
+
 const apiKey = '165dd9ca68fdfa4ffbbf94d846a1293e';
 const searchHistory = [];
-async function searchWeather() {
-    const cityInput = document.getElementById('cityInput');
-    const cityName = cityInput.value.trim();
 
-    if (cityName === '') {
+// searchHistory.push("Palo Alto");
+// searchWeather("Palo Alto");
+
+async function searchWeather(cityName) {
+    let cityNameInput = cityName; // Declare the variable here
+
+    if (typeof cityNameInput === 'undefined') { // Check if cityName is undefined
+        const cityInput = document.getElementById('cityInput');
+        cityNameInput = cityInput.value.trim();
+    }
+
+    if (!cityNameInput) {
         alert('Please enter a city name.');
         return;
     }
 
     try {
-        const { lat, lon } = await getLatLonForCity(cityName);
+        const { lat, lon } = await getLatLonForCity(cityNameInput);
         const weatherData = await fetchWeatherData(lat, lon);
 
         displayWeatherForecast(weatherData);
-        addToSearchHistory(cityName);
+        addToSearchHistory(cityNameInput);
         cityInput.value = '';
     } catch (error) {
         console.error('Error fetching weather data:', error);
     }
 }
+
+
+
 
 async function getLatLonForCity(cityName) {
     const geoData = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`);
@@ -52,6 +63,12 @@ function updateSearchHistory() {
     for (const city of searchHistory) {
         const listItem = document.createElement('li');
         listItem.textContent = city;
+        //change to add search history function to display weather for previous city
+        listItem.addEventListener('click', function() {
+            //loads the forecast for the clicked city
+            const cityName = listItem.textContent;
+            searchWeather(cityName);
+        });
         searchHistoryList.appendChild(listItem);
     }
 }
